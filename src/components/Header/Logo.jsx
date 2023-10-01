@@ -6,7 +6,7 @@ const Logo = () => {
   return (
     <div
       className={`w-full flex flex-1 font-bold ${colorSetter(
-        "text-gray-800",
+        "",
         "text-gray-200"
       )}`}
     >
