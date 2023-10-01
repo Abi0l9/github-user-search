@@ -7,7 +7,7 @@ const Logo = () => {
     <div
       className={`w-full flex flex-1 font-bold ${colorSetter(
         "",
-        "text-gray-200"
+        "text-gray-800"
       )}`}
     >
       devfinder
