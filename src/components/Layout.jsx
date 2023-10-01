@@ -10,7 +10,7 @@ const Layout = () => {
     setDarkMode(!darkMode);
   };
   return (
-    <div className="w-full">
+    <div className="w-full md:w-5/6 md:flex flex-col mx-auto">
       <Header toggle={toggleMode} darkMode={darkMode} />
       <Search />
       <Main />
