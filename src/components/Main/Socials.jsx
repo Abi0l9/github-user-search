@@ -22,13 +22,22 @@ const SocialContainer = ({ icon, detail }) => {
   );
 };
 
-const Socials = () => {
+const Socials = ({ user }) => {
   return (
     <div className="w-full flex flex-row flex-wrap my-3 gap-y-2">
-      <SocialContainer icon={location} detail={"San Francisco"} />
-      <SocialContainer icon={twitter} detail={"Not Available"} />
-      <SocialContainer icon={link} detail={"@github"} />
-      <SocialContainer icon={github} detail={"@github"} />
+      <SocialContainer
+        icon={location}
+        detail={user?.location || "San Francisco"}
+      />
+      <SocialContainer
+        icon={twitter}
+        detail={user?.twitter_username || "Not Available"}
+      />
+      <SocialContainer
+        icon={link}
+        detail={<a href={user?.url}>{user?.html_url}</a> || "@github"}
+      />
+      <SocialContainer icon={github} detail={`@${user?.login}` || "@github"} />
     </div>
   );
 };

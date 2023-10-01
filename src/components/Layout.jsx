@@ -7,6 +7,11 @@ import { useColorScheme } from "../hooks/ColorSchemeContext";
 const Layout = () => {
   const [darkMode, setDarkMode] = useState(false);
   const { toggleColorScheme } = useColorScheme();
+  const [user, setUser] = useState({});
+
+  const getUserDetailsFromQuery = (data) => {
+    setUser(data);
+  };
 
   const toggleMode = () => {
     setDarkMode(!darkMode);
@@ -14,11 +19,11 @@ const Layout = () => {
   };
   return (
     <div
-      className={`w-full px-2 md:w-5/6 md:flex min-h-screen flex-col mx-auto`}
+      className={`w-full py-4 px-2 md:w-5/6 md:flex min-h-screen flex-col mx-auto`}
     >
       <Header toggle={toggleMode} darkMode={darkMode} />
-      <Search />
-      <Main />
+      <Search getData={getUserDetailsFromQuery} />
+      <Main user={user} />
     </div>
   );
 };

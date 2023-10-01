@@ -20,7 +20,7 @@ const LikeCard = ({ title, figure }) => {
   );
 };
 
-const Likes = () => {
+const Likes = ({ user }) => {
   const { colorSetter } = useColorScheme();
   return (
     <div
@@ -29,9 +29,9 @@ const Likes = () => {
         "bg-gray-800"
       )}`}
     >
-      <LikeCard title={"Repos"} figure={8} />
-      <LikeCard title={"Followers"} figure={3938} />
-      <LikeCard title={"Following"} figure={9} />
+      <LikeCard title={"Repos"} figure={user?.public_repos || "8"} />
+      <LikeCard title={"Followers"} figure={user?.followers || "3938"} />
+      <LikeCard title={"Following"} figure={user?.following || "9"} />
     </div>
   );
 };

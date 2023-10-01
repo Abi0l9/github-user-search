@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import search from "@iconify/icons-line-md/search";
 import { useColorScheme } from "../../hooks/ColorSchemeContext";
+import { getUser } from "../../services/git";
 
-const Search = () => {
+const Search = ({ getData }) => {
   const [searchText, setSearchText] = useState("");
   const [error, setError] = useState(false); // eslint-disable-line
   const { colorSetter } = useColorScheme();
@@ -12,8 +13,20 @@ const Search = () => {
     setSearchText(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSearchText("");
+
+    try {
+      const response = await getUser(searchText);
+      getData(response?.data);
+    } catch (e) {
+      setError(true);
+
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+    }
   };
 
   return (
@@ -42,11 +55,11 @@ const Search = () => {
           )}`}
           placeholder="Search Github Username..."
         />
-        {error && <div className="min-w-[150px]"></div>}
+        {error && <div className="min-w-[150px] text-red-500">No results</div>}
         <input
           type="submit"
           value="Search"
-          className="bg-[#0079FF] px-3 py-1 text-gray-100 rounded-md"
+          className="bg-[#0079FF] active:bg-blue-600 hover:bg-blue-400 px-3 py-1 text-gray-100 rounded-md"
         />
       </form>
     </div>

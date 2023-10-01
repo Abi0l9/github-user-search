@@ -5,7 +5,7 @@ import Likes from "./Likes";
 import Socials from "./Socials";
 import { useColorScheme } from "../../hooks/ColorSchemeContext";
 
-const Main = () => {
+const Main = ({ user }) => {
   const { colorSetter } = useColorScheme();
   return (
     <div
@@ -15,16 +15,16 @@ const Main = () => {
       )}`}
     >
       <div className="w-full flex flex-row  gap-x-6 lg:gap-x-10">
-        <Avatar />
-        <PersonalDetails />
+        <Avatar user={user} />
+        <PersonalDetails user={user} />
       </div>
       <div className="w-full flex flex-row  gap-x-10">
         <div className="w-[200px]"></div>
-        <Likes />
+        <Likes user={user} />
       </div>
       <div className="w-full flex flex-row  gap-x-10">
         <div className="w-[200px]"></div>
-        <Socials />
+        <Socials user={user} />
       </div>
     </div>
   );
