@@ -12,7 +12,7 @@ const Toggler = ({ darkMode, toggle }) => {
         className={`${colorSetter("text-gray-900", "text-gray-100")}`}
         onClick={toggle}
       >
-        {colorSetter("Light", "Dark")}
+        {colorSetter("Dark", "Light")}
       </div>
       <div className="" onClick={toggle}>
         <Icon

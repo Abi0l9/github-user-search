@@ -35,9 +35,15 @@ const Socials = ({ user }) => {
       />
       <SocialContainer
         icon={link}
-        detail={<a href={user?.url}>{user?.html_url}</a> || "@github"}
+        detail={
+          <a href={user?.url}>{user?.html_url || "Not Available"}</a> ||
+          "@github"
+        }
       />
-      <SocialContainer icon={github} detail={`@${user?.login}` || "@github"} />
+      <SocialContainer
+        icon={github}
+        detail={user?.login ? `@${user?.login}` : "@github"}
+      />
     </div>
   );
 };

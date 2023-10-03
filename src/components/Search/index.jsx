@@ -6,7 +6,9 @@ import { getUser } from "../../services/git";
 
 const Search = ({ getData }) => {
   const [searchText, setSearchText] = useState("");
-  const [error, setError] = useState(false); // eslint-disable-line
+  const [searchBtnText, setSearchBtnText] = useState("Search");
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const { colorSetter } = useColorScheme();
 
   const handleInput = (e) => {
@@ -17,16 +19,30 @@ const Search = ({ getData }) => {
     e.preventDefault();
     setSearchText("");
 
-    try {
-      const response = await getUser(searchText);
-      getData(response?.data);
-    } catch (e) {
+    if (searchText.length < 1) {
       setError(true);
+      setErrorMsg("Can't be blank");
 
       setTimeout(() => {
+        setErrorMsg("");
         setError(false);
-      }, 3000);
-    }
+      }, 2000);
+    } else
+      try {
+        setSearchBtnText("Searching...");
+        const response = await getUser(searchText);
+        getData(response?.data);
+        setSearchBtnText("Search");
+      } catch (e) {
+        setError(true);
+        setSearchBtnText("Search");
+        setErrorMsg("No results");
+
+        setTimeout(() => {
+          setErrorMsg("");
+          setError(false);
+        }, 3000);
+      }
   };
 
   return (
@@ -55,10 +71,10 @@ const Search = ({ getData }) => {
           )}`}
           placeholder="Search Github Username..."
         />
-        {error && <div className="min-w-[150px] text-red-500">No results</div>}
+        {error && <div className="min-w-[150px] text-red-500">{errorMsg}</div>}
         <input
           type="submit"
-          value="Search"
+          value={searchBtnText}
           className="bg-[#0079FF] active:bg-blue-600 hover:bg-blue-400 px-3 py-1 text-gray-100 rounded-md"
         />
       </form>

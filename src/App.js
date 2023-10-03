@@ -3,8 +3,10 @@ import { useColorScheme } from "./hooks/ColorSchemeContext";
 
 function App() {
   const { colorScheme } = useColorScheme();
+
+  console.log(colorScheme);
   return (
-    <div className={` bg-${colorScheme === "dark" ? "white" : "black"}`}>
+    <div className={` bg-${colorScheme === "dark" ? "white" : "gray-800"}`}>
       <Layout />
     </div>
   );
