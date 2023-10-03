@@ -6,7 +6,11 @@ function App() {
 
   console.log(colorScheme);
   return (
-    <div className={` bg-${colorScheme === "dark" ? "white" : "gray-800"}`}>
+    <div
+      className={`font-spacemono bg-${
+        colorScheme === "dark" ? "white" : "gray-800"
+      }`}
+    >
       <Layout />
     </div>
   );
