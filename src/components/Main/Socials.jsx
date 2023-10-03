@@ -9,7 +9,7 @@ import { useColorScheme } from "../../hooks/ColorSchemeContext";
 const SocialContainer = ({ icon, detail }) => {
   const { colorSetter } = useColorScheme();
   return (
-    <div className={`flex flex-row gap-x-2 items-center w-full md:w-2/4 `}>
+    <div className={`flex flex-row items-center w-full gap-x-2 `}>
       <div className="">
         <Icon icon={icon} />
       </div>
@@ -24,26 +24,38 @@ const SocialContainer = ({ icon, detail }) => {
 
 const Socials = ({ user }) => {
   return (
-    <div className="w-full flex flex-row flex-wrap my-3 gap-y-2">
-      <SocialContainer
-        icon={location}
-        detail={user?.location || "San Francisco"}
-      />
-      <SocialContainer
-        icon={twitter}
-        detail={user?.twitter_username || "Not Available"}
-      />
-      <SocialContainer
-        icon={link}
-        detail={
-          <a href={user?.url}>{user?.html_url || "Not Available"}</a> ||
-          "@github"
-        }
-      />
-      <SocialContainer
-        icon={github}
-        detail={user?.login ? `@${user?.login}` : "@github"}
-      />
+    <div className="w-full flex flex-col my-3">
+      <div className="w-full flex flex-col md:my-2 md:flex-row gap-x-2">
+        <div className="md:flex-1">
+          <SocialContainer
+            icon={location}
+            detail={user?.location || "San Francisco"}
+          />
+        </div>
+        <div className="md:w-2/6">
+          <SocialContainer
+            icon={twitter}
+            detail={user?.twitter_username || "Not Available"}
+          />
+        </div>
+      </div>
+      <div className="w-full flex flex-col md:my-2 md:flex-row gap-x-2">
+        <div className="md:flex-1">
+          <SocialContainer
+            icon={link}
+            detail={
+              <a href={user?.url}>{user?.html_url || "Not Available"}</a> ||
+              "@github"
+            }
+          />
+        </div>
+        <div className="md:w-2/6">
+          <SocialContainer
+            icon={github}
+            detail={user?.login ? `@${user?.login}` : "@github"}
+          />
+        </div>
+      </div>
     </div>
   );
 };

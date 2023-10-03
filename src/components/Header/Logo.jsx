@@ -10,7 +10,9 @@ const Logo = () => {
         "text-gray-100"
       )}`}
     >
-      devfinder
+      <a href="/" className="">
+        Devfinder
+      </a>
     </div>
   );
 };

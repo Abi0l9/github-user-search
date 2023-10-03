@@ -75,7 +75,7 @@ const Search = ({ getData }) => {
         <input
           type="submit"
           value={searchBtnText}
-          className="bg-[#0079FF] active:bg-blue-600 hover:bg-blue-400 px-3 py-1 text-gray-100 rounded-md"
+          className="bg-[#0079FF] active:bg-blue-600 hover:bg-blue-400 px-3 py-1 text-gray-100 rounded-md cursor-pointer"
         />
       </form>
     </div>
