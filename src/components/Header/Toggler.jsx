@@ -16,7 +16,7 @@ const Toggler = ({ darkMode, toggle }) => {
       </div>
       <div className="" onClick={toggle}>
         <Icon
-          icon={darkMode ? sun : moon}
+          icon={darkMode ? moon : sun}
           color={colorSetter("black", "white")}
         />
       </div>
